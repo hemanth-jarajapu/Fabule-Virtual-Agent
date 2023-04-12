@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_message">
+    <sys_ui_message action="INSERT_OR_UPDATE">
+        <application>Virtual Agent</application>
+        <code/>
+        <commented_message/>
+        <key>va:topic:da9acc3447c22110e080e4be436d43b8:node:1ca9b22bd65945029fca64666d3a4e48:field:acknowledgement {0} {1}</key>
+        <language>en</language>
+        <message>You have chosen to perform "{0}" operation on "{1}" content</message>
+        <sys_class_name>sys_ui_message</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-04-10 13:45:53</sys_created_on>
+        <sys_id>61b228724742a510e080e4be436d437c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>va:topic:da9acc3447c22110e080e4be436d43b8:node:1ca9b22bd65945029fca64666d3a4e48:field:acknowledgement {0} {1}</sys_name>
+        <sys_package display_value="Fabule Virtual Agent" source="x_350851_fabule_va">765548b847822110e080e4be436d43ad</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Fabule Virtual Agent">765548b847822110e080e4be436d43ad</sys_scope>
+        <sys_update_name>sys_ui_message_61b228724742a510e080e4be436d437c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-04-10 13:45:53</sys_updated_on>
+    </sys_ui_message>
+</record_update>
