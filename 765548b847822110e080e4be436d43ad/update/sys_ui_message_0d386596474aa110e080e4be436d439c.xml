@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_message">
+    <sys_ui_message action="INSERT_OR_UPDATE">
+        <application>Virtual Agent</application>
+        <code/>
+        <commented_message/>
+        <key>va:topic:da9acc3447c22110e080e4be436d43b8:node:20020ca23bb04dc0bb2225168edab8a7:field:nooptionsfoundmessage {0}</key>
+        <language>en</language>
+        <message>Sorry, I couldn't find any contents with title containing '{0}'</message>
+        <sys_class_name>sys_ui_message</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-04-09 05:32:33</sys_created_on>
+        <sys_id>0d386596474aa110e080e4be436d439c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>va:topic:da9acc3447c22110e080e4be436d43b8:node:20020ca23bb04dc0bb2225168edab8a7:field:nooptionsfoundmessage {0}</sys_name>
+        <sys_package display_value="Fabule Virtual Agent" source="x_350851_fabule_va">765548b847822110e080e4be436d43ad</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Fabule Virtual Agent">765548b847822110e080e4be436d43ad</sys_scope>
+        <sys_update_name>sys_ui_message_0d386596474aa110e080e4be436d439c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-04-09 05:32:33</sys_updated_on>
+    </sys_ui_message>
+</record_update>

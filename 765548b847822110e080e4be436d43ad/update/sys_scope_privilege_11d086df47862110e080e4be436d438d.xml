@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_scope_privilege">
+    <sys_scope_privilege action="INSERT_OR_UPDATE">
+        <operation>write</operation>
+        <source_scope display_value="Fabule Virtual Agent">765548b847822110e080e4be436d43ad</source_scope>
+        <status>allowed</status>
+        <sys_class_name>sys_scope_privilege</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-04-12 09:54:05</sys_created_on>
+        <sys_id>11d086df47862110e080e4be436d438d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>incident</sys_name>
+        <sys_package display_value="Fabule Virtual Agent" source="x_350851_fabule_va">765548b847822110e080e4be436d43ad</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Fabule Virtual Agent">765548b847822110e080e4be436d43ad</sys_scope>
+        <sys_update_name>sys_scope_privilege_11d086df47862110e080e4be436d438d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-04-12 09:54:05</sys_updated_on>
+        <target_name>incident</target_name>
+        <target_scope display_value="Global">global</target_scope>
+        <target_type>sys_db_object</target_type>
+    </sys_scope_privilege>
+</record_update>

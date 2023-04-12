@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_scope_privilege">
+    <sys_scope_privilege action="DELETE">
+        <operation>delete</operation>
+        <source_scope display_value="Fabule Virtual Agent">765548b847822110e080e4be436d43ad</source_scope>
+        <status>allowed</status>
+        <sys_class_name>sys_scope_privilege</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-04-09 05:37:23</sys_created_on>
+        <sys_id>8459615a474aa110e080e4be436d437f</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>x_350851_fabule_content</sys_name>
+        <sys_package display_value="Fabule Virtual Agent" source="x_350851_fabule_va">765548b847822110e080e4be436d43ad</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Fabule Virtual Agent">765548b847822110e080e4be436d43ad</sys_scope>
+        <sys_update_name>sys_scope_privilege_8459615a474aa110e080e4be436d437f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-04-12 09:37:00</sys_updated_on>
+        <target_name>x_350851_fabule_content</target_name>
+        <target_scope display_value="Fabule">61345ea5db30b010883c68d35b961921</target_scope>
+        <target_type>sys_db_object</target_type>
+    </sys_scope_privilege>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Fabule Virtual Agent">765548b847822110e080e4be436d43ad</application>
+        <file_path/>
+        <instance_id>9a62636cdb607b0091232f17d49619df</instance_id>
+        <instance_name>dev77737</instance_name>
+        <name>sys_scope_privilege_8459615a474aa110e080e4be436d437f</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_scope_privilege"><sys_scope_privilege action="INSERT_OR_UPDATE"><operation>delete</operation><source_scope display_value="Fabule Virtual Agent">765548b847822110e080e4be436d43ad</source_scope><status>allowed</status><sys_class_name>sys_scope_privilege</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2023-04-09 05:37:23</sys_created_on><sys_id>8459615a474aa110e080e4be436d437f</sys_id><sys_mod_count>3</sys_mod_count><sys_name>x_350851_fabule_content</sys_name><sys_package display_value="Fabule Virtual Agent" source="x_350851_fabule_va">765548b847822110e080e4be436d43ad</sys_package><sys_policy/><sys_scope display_value="Fabule Virtual Agent">765548b847822110e080e4be436d43ad</sys_scope><sys_update_name>sys_scope_privilege_8459615a474aa110e080e4be436d437f</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2023-04-12 09:37:00</sys_updated_on><target_name>x_350851_fabule_content</target_name><target_scope display_value="Fabule">61345ea5db30b010883c68d35b961921</target_scope><target_type>sys_db_object</target_type></sys_scope_privilege></record_update>]]></payload>
+        <payload_hash>-1283227175</payload_hash>
+        <record_name>x_350851_fabule_content</record_name>
+        <reverted_from/>
+        <source>b255ccb847822110e080e4be436d43db</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-04-12 09:37:00</sys_created_on>
+        <sys_id>03ec3d9747862110e080e4be436d4330</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18774d3589f0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-04-12 09:37:00</sys_updated_on>
+        <type>Cross scope privilege</type>
+        <update_guid>87ec3d970f8621109cfb7f4ba3511f2f</update_guid>
+        <update_guid_history>87ec3d970f8621109cfb7f4ba3511f2f:-1283227175,4decf59729862110a537e63db61eeec9:655858920,bdcc79573d862110b2496839a4e43a84:1367166533,c059615a924aa1107750e12d5d51b180:1376348686</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-04-12 10:29:05</sys_created_on>
+        <sys_db_object display_value="" name="sys_scope_privilege">sys_scope_privilege</sys_db_object>
+        <sys_id>5bef311792324f20acaea8788282e321</sys_id>
+        <sys_metadata>8459615a474aa110e080e4be436d437f</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_350851_fabule_content</sys_name>
+        <sys_package display_value="Fabule Virtual Agent" source="x_350851_fabule_va">765548b847822110e080e4be436d43ad</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Fabule Virtual Agent">765548b847822110e080e4be436d43ad</sys_scope>
+        <sys_scope_delete display_value="">00bcb7d233e44c2180393cb9331d4a49</sys_scope_delete>
+        <sys_update_name>sys_scope_privilege_8459615a474aa110e080e4be436d437f</sys_update_name>
+        <sys_update_version display_value="sys_scope_privilege_8459615a474aa110e080e4be436d437f">03ec3d9747862110e080e4be436d4330</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-04-12 10:29:05</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

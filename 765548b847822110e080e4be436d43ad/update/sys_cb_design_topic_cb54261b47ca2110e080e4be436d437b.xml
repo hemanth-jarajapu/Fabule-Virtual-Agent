@@ -1,0 +1,763 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_design_topic">
+    <sys_cb_design_topic action="INSERT_OR_UPDATE">
+        <compiled_topic display_value="_PRVW__8b546ad76eca2110561396c25b5f7ff4">03546ad747ca2110e080e4be436d43f6</compiled_topic>
+        <design_definition>{"type":"FlowTopic","type":"FlowTopic","triggers":[{"type":"Trigger","name":"640861febb52438ea66f15b2c0600999","triggerType":"request","applicability":{"type":"Applicability","type":"Applicability","mode":"script","value":"true"},"id":"640861febb52438ea66f15b2c0600999"}],"goals":[{"name":"primary","trigger_id":"640861febb52438ea66f15b2c0600999","nodes":[{"type":"StartGoal","type":"StartGoal","goal_id":"primary","greeting_msg":{"type":"String","type":"String","mode":"string","value":"gs.getMessageLang(\"Hi {0}, I can help you search and update Fabule contents.\", vaContext.getRequesterLang(), [vaInputs.user.name])"},"id":"deae3598897543b78801d64bb3645f3d","name":"Start"},{"type":"TerminateGoal","type":"TerminateGoal","goal_id":"primary","confirmation_msg":{"type":"String","type":"String","mode":"string","value":"gs.getMessageLang(\"Hope I was able to help you!\", vaContext.getRequesterLang())"},"id":"1d6b8f0e3842430dbc38adedca36182a","name":"End"},{"type":"InputPrompt","type":"InputPrompt","variable_id":"6df430f2cfb84a7f8bae610c19b404e4","message":{"type":"String","type":"String","mode":"string","value":"gs.getMessageLang(\"va:topic:da9acc3447c22110e080e4be436d43b8:node:cc9e56b10d2640f8bb1f590f74a6079a:field:Message\", vaContext.getRequesterLang())"},"acknowledgement":{"type":"String","type":"String","mode":"string","value":""},"nlu_entity_binding":{"type":"NLUEntityBinding","allow_text_input":false,"use_confirmation_prompt":true},"skippable":{"type":"Applicability","type":"Applicability","mode":"script","value":"false"},"id":"cc9e56b10d2640f8bb1f590f74a6079a","name":"Content Title","goal_id":"primary","applicability":{"type":"Applicability","type":"Applicability","mode":"script","value":"true"},"formatType":"Text","validationScript":""},{"type":"ChoiceInputPrompt","type":"ChoiceInputPrompt","expression_mode":"simple","metadataScript":"","cardName":"","cardFields":[],"id":"1ca9b22bd65945029fca64666d3a4e48","name":"Operation","goal_id":"primary","applicability":{"type":"Applicability","type":"Applicability","mode":"script","value":"true"},"variable_id":"37d2fc1a40634236974504bf5e3bcf8c","message":{"type":"String","type":"String","mode":"string","value":"gs.getMessageLang(\"What would you like to do with the content\", vaContext.getRequesterLang())"},"acknowledgement":{"type":"String","type":"String","mode":"string","value":"gs.getMessageLang(\"va:topic:da9acc3447c22110e080e4be436d43b8:node:1ca9b22bd65945029fca64666d3a4e48:field:Acknowledgement {0}\", vaContext.getRequesterLang(), [vaInputs.operation])"},"skippable":{"type":"Applicability","type":"Applicability","mode":"script","value":"false"},"nlu_entity_binding":{"type":"NLUEntityBinding","allow_text_input":false,"use_confirmation_prompt":true}},{"type":"Decision","type":"Decision","name":"Decision","branches":[{"type":"Branch","type":"Branch","label":"No Contents","expression":{"type":"Applicability","type":"Applicability","mode":"script","value":"(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n    return vaVars.contents ? false : true\n})()\n"},"id":"e7722f17296a42d7b2e74f982484f6f1","name":"No Contents"},{"type":"Branch","type":"Branch","label":"Found Contents","expression":{"type":"Applicability","type":"Applicability","mode":"script","value":"(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n    return vaVars.contents ? true : false\n})()\n"},"id":"a67ef00f39124c44b89630c06c3158ef","name":"Found Contents"}],"id":"acf198901e884cfb9f95047f9248fd68","goal_id":"primary"},{"type":"InputPrompt","type":"InputPrompt","variable_id":"02e15d39a1764bb39423b261c34e8e80","message":{"type":"String","type":"String","mode":"string","value":"gs.getMessageLang(\"Do you want to update another content?\", vaContext.getRequesterLang())"},"nlu_entity_binding":{"type":"NLUEntityBinding","allow_text_input":false,"use_confirmation_prompt":true},"skippable":{"type":"Applicability","type":"Applicability","mode":"script","value":"false"},"id":"6934ffd080414b0ba90c916201936775","name":"Update Another","goal_id":"primary","applicability":{"type":"Applicability","type":"Applicability","mode":"script","value":"true"}},{"type":"Decision","type":"Decision","name":"Decision","branches":[{"type":"Branch","type":"Branch","label":"false","expression":{"type":"Applicability","type":"Applicability","mode":"query","value":"update_another=false"},"id":"26bc95dcf7264c81adceb76ad62e0dcc","name":"false"},{"type":"Branch","type":"Branch","label":"true","expression":{"type":"Applicability","type":"Applicability","mode":"query","value":"update_another=true"},"id":"f1abf81751f8479893e085c5864db567","name":"true"}],"id":"350bb1e4eed44edcbef87d7d9e624717","goal_id":"primary"},{"type":"ScriptedAction","type":"ScriptedAction","script":"(function execute() {\n    /* Code your scripted action here. For example, you might update a\n       record based on conditional logic:\n\n        if (vaVars.my_flag == 'say hello') {\n            gs.info('hi there');\n        } else {\n            gs.info('bye now');\n        }\n    */\n\n    vaVars.contents = \"\";\n    var contents = [];\n    var contentGR = new GlideRecord(\"x_350851_fabule_content\");\n    contentGR.addQuery(\"title\", \"CONTAINS\", vaInputs.content_title);\n    contentGR.query();\n    while(contentGR.next()){\n        var content = {\n            \"id\": contentGR.getUniqueValue(),\n            \"title\": contentGR.getValue(\"title\"),\n            \"description\": contentGR.getValue(\"description\"),\n            \"imageName\": contentGR.getDisplayValue(\"cover_image\"),\n            \"active\": contentGR.active\n        }\n        contents.push(content);\n    }\n\n    if(contents.length &gt; 0){\n        vaVars.contents = JSON.stringify(contents);\n    }\n})()\n","id":"9d6d2450ca394922961c887291729d27","name":"Get Contents","goal_id":"primary","applicability":{"type":"Applicability","type":"Applicability","mode":"script","value":"true"}},{"type":"CarouselInputPrompt","type":"CarouselInputPrompt","carousel_options_script":"(function execute() {\n    /* Code your script logic here.  When defining your enumeration list in javascript\n       ensure that you assign keys of Name, Description, Value, and Body. For example:\n\n       var options = [];\n       options.push(\n            {\n                'Name': 'name1',\n                'Value': 'value_1',\n                'Description': 'a description of value_1 item',\n                'Body': 'https://somehost/somepath/somepic1.jpg'\n            }\n       );\n       options.push(\n            {\n                'Name': 'name2',\n                'Value': 'value_2',\n                'Description': 'a description of value_2 item',\n                'Body': 'https://somehost/somepath/somepic2.jpg'\n            }\n       );\n       return options;\n    */\n\n    var options = []; // add options here...\n    var contents = JSON.parse(vaVars.contents);\n    for(var i in contents){\n        options.push(\n        {\n            'Name': contents[i].title,\n            'Value': contents[i].id,\n            'Description': contents[i].description,\n            'Body': gs.getProperty('glide.servlet.uri') + contents[i].imageName\n        });\n    }\n    return options;\n})()\n","no_options_found_message":{"type":"String","type":"String","mode":"string","value":"gs.getMessageLang(\"va:topic:da9acc3447c22110e080e4be436d43b8:node:6ddcb5e7674144bb8a701db3b49cbf18:field:NoOptionsFoundMessage {0}\", vaContext.getRequesterLang(), [vaInputs.content_title])"},"id":"6ddcb5e7674144bb8a701db3b49cbf18","name":"Choose Content","goal_id":"primary","applicability":{"type":"Applicability","type":"Applicability","mode":"script","value":"true"},"variable_id":"fd3d5f78a8bc4d188caa2445f197f5f2","message":{"type":"String","type":"String","mode":"string","value":"gs.getMessageLang(\"va:topic:da9acc3447c22110e080e4be436d43b8:node:6ddcb5e7674144bb8a701db3b49cbf18:field:Message {0}\", vaContext.getRequesterLang(), [vaInputs.content_title])"},"skippable":{"type":"Applicability","type":"Applicability","mode":"script","value":"false"},"nlu_entity_binding":{"type":"NLUEntityBinding","allow_text_input":false,"use_confirmation_prompt":true}},{"type":"Decision","type":"Decision","name":"Decision","branches":[{"type":"Branch","type":"Branch","label":"Modify Title","expression":{"type":"Applicability","type":"Applicability","mode":"query","value":"operation=Modify Title"},"id":"f817564591a9459e87fa2aabaf35eca7","name":"Modify Title"},{"type":"Branch","type":"Branch","label":"Activate/Deactivate","expression":{"type":"Applicability","type":"Applicability","mode":"query","value":"operation=Activate/Deactivate"},"id":"6f24eeb9f0434d348deb81a9967068cb","name":"Activate/Deactivate"}],"id":"776e08045a9246e5ad8404c5ec65c725","goal_id":"primary"},{"type":"InputPrompt","type":"InputPrompt","variable_id":"dd7783085db44ff0a41ee22926c5b0f9","message":{"type":"String","type":"String","mode":"script","value":"(function execute() {\n    /* Return a quoted string.  For example:\n\n       if (vaInputs.first_name == 'Bill') {\n           return gs.getMessageLang(\"hi there {0}\", vaContext.getRequesterLang(), [vaInputs.first_name]);\n       } else {\n           return gs.getMessageLang(\"how are you {0}\", vaContext.getRequesterLang(), [vaInputs.last_name]);\n       }\n    */\n    var contents = JSON.parse(vaVars.contents);\n    var selectedContent = vaInputs.choose_content;\n    var roll, active = false;\n    for (var i in contents) {\n        if (contents[i].id == selectedContent) {\n            active = contents[i].active;\n            roll = i;\n            break;\n        }\n    }\n    vaVars.activate_content = !active;\n    var message = \"The selected content '\" + contents[roll].title + \"' is currently \" + (active ? 'active' : 'inactive') + \".\\nDo you want to \" + (active ? 'deactivate' : 'activate') + \" it?\";\n    return message;\n})()"},"nlu_entity_binding":{"type":"NLUEntityBinding","allow_text_input":false,"use_confirmation_prompt":true},"skippable":{"type":"Applicability","type":"Applicability","mode":"script","value":"false"},"id":"94a950b5066643e6aaadbdea4d62db72","name":"confirm active deactive","goal_id":"primary","applicability":{"type":"Applicability","type":"Applicability","mode":"script","value":"true"}},{"type":"Decision","type":"Decision","name":"Activate/Deactivate","branches":[{"type":"Branch","type":"Branch","label":"false","expression":{"type":"Applicability","type":"Applicability","mode":"query","value":"confirm_active_deactive=false"},"id":"13aea36b920f4bdb92d386f4014fe67c","name":"false"},{"type":"Branch","type":"Branch","label":"true","expression":{"type":"Applicability","type":"Applicability","mode":"query","value":"confirm_active_deactive=true"},"id":"e5228d816b3745dbab2529a49afc6341","name":"true"}],"id":"6bb8ae360a6a4916bda031af7de29132","goal_id":"primary"},{"type":"CRUDAction","type":"CRUDAction","mode":"update","query":"active={{vaVars.activate_content}}","variable_id":"0263ac8a864d466bb83881d2de975660","id":"6cb44c3b40534d1cb0c31b32cbe1bf7b","name":"Activate/Deactivate Content","goal_id":"primary","applicability":{"type":"Applicability","type":"Applicability","mode":"script","value":"true"}},{"type":"CRUDAction","type":"CRUDAction","mode":"read","read_mode":"variable","query":"sys_id={{vaInputs.choose_content}}","variable_id":"0263ac8a864d466bb83881d2de975660","id":"905c3f7c85c04f34baffa6ad1551c2cc","name":"Store Content Gliderecord","goal_id":"primary","applicability":{"type":"Applicability","type":"Applicability","mode":"script","value":"true"},"condition":{"type":"Condition","mode":"glide_query","value":"sys_id={{vaInputs.choose_content}}"}},{"type":"TextOutputPrompt","type":"TextOutputPrompt","value":[{"type":"String","type":"String","mode":"script","value":"(function execute() {\n    /* Return a quoted string.  For example:\n\n       if (vaInputs.first_name == 'Bill') {\n           return gs.getMessageLang(\"hi there {0}\", vaContext.getRequesterLang(), [vaInputs.first_name]);\n       } else {\n           return gs.getMessageLang(\"how are you {0}\", vaContext.getRequesterLang(), [vaInputs.last_name]);\n       }\n    */\n    var message = \"Failed to process the request!\";\n    try {\n        var contentGR = new GlideRecord(\"x_350851_fabule_content\");\n        contentGR.get(vaInputs.activate_deactivate_content.getValue());\n        var currentStatus = contentGR.active;\n\n        if ((vaVars.activate_content &amp;&amp; currentStatus) || (!vaVars.activate_content &amp;&amp; !currentStatus)) {\n            message = \"Successfully completed the request!\";\n        }\n    } catch (err) {\n        gs.error(\"Update Fabule Content: Activate/Deactivate message\\n\\n\" + err);\n    } finally {\n        return message;\n    }\n})()\n"}],"id":"23d2068bc00a4742b55e033282433d67","name":"Activate/Deactivate Action Result","goal_id":"primary","applicability":{"type":"Applicability","type":"Applicability","mode":"script","value":"true"},"secure":false}],"edges":[{"type":"Edge","source_node_id":"23d2068bc00a4742b55e033282433d67","target_node_id":"6934ffd080414b0ba90c916201936775","id":"b12f53fd243b4491a4ead23c8c5ed319"},{"type":"Edge","source_node_id":"6bb8ae360a6a4916bda031af7de29132","target_node_id":"6934ffd080414b0ba90c916201936775","branch_id":"13aea36b920f4bdb92d386f4014fe67c","id":"7d7ed7461e054dbc974c1d971d59a225","name":"13aea36b920f4bdb92d386f4014fe67c"},{"type":"Edge","source_node_id":"9d6d2450ca394922961c887291729d27","target_node_id":"acf198901e884cfb9f95047f9248fd68","id":"a578907c06dc417bb7cc769ca14d2ff6"},{"type":"Edge","source_node_id":"350bb1e4eed44edcbef87d7d9e624717","target_node_id":"1d6b8f0e3842430dbc38adedca36182a","branch_id":"26bc95dcf7264c81adceb76ad62e0dcc","id":"b55efa04b698445fbc74f19ac2a10501","name":"26bc95dcf7264c81adceb76ad62e0dcc"},{"type":"Edge","source_node_id":"350bb1e4eed44edcbef87d7d9e624717","target_node_id":"cc9e56b10d2640f8bb1f590f74a6079a","branch_id":"f1abf81751f8479893e085c5864db567","id":"f85148516a9345d3baac980775661bc5","name":"f1abf81751f8479893e085c5864db567"},{"type":"Edge","source_node_id":"deae3598897543b78801d64bb3645f3d","target_node_id":"cc9e56b10d2640f8bb1f590f74a6079a","id":"33bb915d746d4b8f86b53e136c25e5b4"},{"type":"Edge","source_node_id":"acf198901e884cfb9f95047f9248fd68","target_node_id":"6934ffd080414b0ba90c916201936775","branch_id":"e7722f17296a42d7b2e74f982484f6f1","id":"c15025aa09884d478050f11fa9f86c35","name":"e7722f17296a42d7b2e74f982484f6f1"},{"type":"Edge","source_node_id":"6934ffd080414b0ba90c916201936775","target_node_id":"350bb1e4eed44edcbef87d7d9e624717","id":"9f636200326b4f2e82b32640295d8d1b"},{"type":"Edge","source_node_id":"cc9e56b10d2640f8bb1f590f74a6079a","target_node_id":"9d6d2450ca394922961c887291729d27","id":"14945b08e25245d48669836bb39f09a6"},{"type":"Edge","source_node_id":"acf198901e884cfb9f95047f9248fd68","target_node_id":"6ddcb5e7674144bb8a701db3b49cbf18","branch_id":"a67ef00f39124c44b89630c06c3158ef","id":"c1ef3876c8824d87bc60d1bb57ec44ce","name":"a67ef00f39124c44b89630c06c3158ef"},{"type":"Edge","source_node_id":"1ca9b22bd65945029fca64666d3a4e48","target_node_id":"776e08045a9246e5ad8404c5ec65c725","id":"00c7331bbb9845ad84435a566eaec72d"},{"type":"Edge","source_node_id":"776e08045a9246e5ad8404c5ec65c725","target_node_id":"6934ffd080414b0ba90c916201936775","branch_id":"f817564591a9459e87fa2aabaf35eca7","id":"82eacd27a9334e0eb4120182e275ebf0","name":"f817564591a9459e87fa2aabaf35eca7"},{"type":"Edge","source_node_id":"776e08045a9246e5ad8404c5ec65c725","target_node_id":"94a950b5066643e6aaadbdea4d62db72","branch_id":"6f24eeb9f0434d348deb81a9967068cb","id":"e96cc8d7f56a4e4db85c98a11036f14e","name":"6f24eeb9f0434d348deb81a9967068cb"},{"type":"Edge","source_node_id":"94a950b5066643e6aaadbdea4d62db72","target_node_id":"6bb8ae360a6a4916bda031af7de29132","id":"6861bdd454094dafa6c2444d70f04f58"},{"type":"Edge","source_node_id":"6bb8ae360a6a4916bda031af7de29132","target_node_id":"6cb44c3b40534d1cb0c31b32cbe1bf7b","branch_id":"e5228d816b3745dbab2529a49afc6341","id":"ad14eb02037a4c328c2af81e6824b231","name":"e5228d816b3745dbab2529a49afc6341"},{"type":"Edge","source_node_id":"6ddcb5e7674144bb8a701db3b49cbf18","target_node_id":"905c3f7c85c04f34baffa6ad1551c2cc","id":"9cb11ec40c6b480ab4fa2628e3a15c7c"},{"type":"Edge","source_node_id":"905c3f7c85c04f34baffa6ad1551c2cc","target_node_id":"1ca9b22bd65945029fca64666d3a4e48","id":"a254d6ea30c641aba1e4bb189cef09ef"},{"type":"Edge","source_node_id":"6cb44c3b40534d1cb0c31b32cbe1bf7b","target_node_id":"23d2068bc00a4742b55e033282433d67","id":"bcade283aec04958923a7afa2d405f31"}],"id":"primary"}],"script_variables":[{"type":"VariableDto","type":"String","name":"LiveAgent_application","value":{"type":"String","type":"String","mode":"string"},"list":false,"id":"b6990ae91327498abb2a447b848ce3ba","formatType":"text","secure":false,"sensitive":false},{"type":"VariableDto","type":"String","name":"contents","value":{"type":"String","type":"String","mode":"string"},"list":false,"id":"d8e88b9dcadd4f36a5c51a2a2d99a2aa","formatType":"text","secure":false,"sensitive":false},{"type":"VariableDto","type":"String","name":"activate_content","value":{"type":"String","type":"String","mode":"string"},"list":false,"id":"1d4b28bc28df4bbe8b0061ef02f9b302","formatType":"text","secure":false,"sensitive":false}],"glide_variables":[{"type":"Reference","type":"Reference","table":"sys_user","id":"current-user","name":"user","formatType":"text","secure":false,"sensitive":false,"list":false},{"type":"VariableDto","type":"String","name":"content_title","list":false,"id":"6df430f2cfb84a7f8bae610c19b404e4","formatType":"Text","validationScript":"","secure":false,"sensitive":false},{"type":"Choice","type":"Choice","choices":[{"name":"Activate/Deactivate","element":"Activate/Deactivate"},{"name":"Modify Title","element":"Modify Title"}],"id":"37d2fc1a40634236974504bf5e3bcf8c","name":"operation","formatType":"text","secure":false,"sensitive":false,"list":false},{"type":"True/False","type":"True/False","id":"02e15d39a1764bb39423b261c34e8e80","name":"update_another","formatType":"text","secure":false,"sensitive":false,"list":false},{"type":"CarouselImage","type":"CarouselImage","id":"fd3d5f78a8bc4d188caa2445f197f5f2","name":"choose_content","formatType":"text","secure":false,"sensitive":false,"list":false},{"type":"True/False","type":"True/False","id":"dd7783085db44ff0a41ee22926c5b0f9","name":"confirm_active_deactive","formatType":"text","secure":false,"sensitive":false,"list":false},{"type":"Reference","type":"Reference","table":"x_350851_fabule_content","id":"7ab12cd0ee40478b8d1ecbef29e353c7","name":"activate_deactivate_content","formatType":"text","secure":false,"sensitive":false,"list":false},{"type":"Reference","type":"Reference","table":"x_350851_fabule_content","id":"0263ac8a864d466bb83881d2de975660","name":"store_content_gliderecord","formatType":"text","secure":false,"sensitive":false,"list":false}],"applicability":{"type":"Applicability","type":"Applicability","mode":"script","value":"true"},"roles":[],"scope":"765548b847822110e080e4be436d43ad","domain":"global","topic_type":"STANDARD","channels":[],"id":"da9acc3447c22110e080e4be436d43b8","name":"_PRVW__8b546ad76eca2110561396c25b5f7ff4","key_phrases":["Update Fabule Content","deactivate","content","activate"],"nlu_provider":"","nlu_model":"","nlu_model_label":"","nlu_intent":"","nlu_intent_label":"","flexible_conversation_switching":false,"autopilot_topic":false,"design_categories":[{"name":null,"visible":false,"sysId":"49f6c0bc47822110e080e4be436d43b3"}],"triggerable_by_notification":false,"library":false,"readOnly":false,"nluMapping":"[]"}</design_definition>
+        <design_topic_id>da9acc3447c22110e080e4be436d43b8</design_topic_id>
+        <graph>{
+  "graph_api_version": "1.0.42",
+  "goals": {
+    "primary": {
+      "id": "primary",
+      "trigger": {
+        "type": "primary"
+      },
+      "name": "primary",
+      "applicability": "",
+      "description": "",
+      "nodes": {
+        "deae3598897543b78801d64bb3645f3d": {
+          "id": "deae3598897543b78801d64bb3645f3d",
+          "stepType": "Start",
+          "name": "Start",
+          "greetingResponse": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Hi "
+                  },
+                  {
+                    "type": "datapill",
+                    "dataPill": {
+                      "value": "{{vaInputs.user.name}}",
+                      "displayValue": "Input Variables➛User➛Name"
+                    },
+                    "children": [
+                      {
+                        "text": ""
+                      }
+                    ]
+                  },
+                  {
+                    "text": ", I can help you search and update Fabule contents."
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          }
+        },
+        "1d6b8f0e3842430dbc38adedca36182a": {
+          "id": "1d6b8f0e3842430dbc38adedca36182a",
+          "stepType": "TerminateGoal",
+          "name": "End",
+          "confirmationMessage": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Hope I was able to help you!"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          }
+        },
+        "cc9e56b10d2640f8bb1f590f74a6079a": {
+          "id": "cc9e56b10d2640f8bb1f590f74a6079a",
+          "stepType": "Prompt",
+          "name": "Content Title",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Please provide (part of) the title of the content you'd like to update"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "6df430f2cfb84a7f8bae610c19b404e4",
+          "inputType": {
+            "format": "Text",
+            "script": ""
+          }
+        },
+        "1ca9b22bd65945029fca64666d3a4e48": {
+          "stepType": "ChoicePrompt",
+          "name": "Operation",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "What would you like to do with the content"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "You have chosen to perform \""
+                  },
+                  {
+                    "type": "datapill",
+                    "dataPill": {
+                      "value": "{{vaInputs.operation}}",
+                      "displayValue": "Input Variables➛Operation"
+                    },
+                    "children": [
+                      {
+                        "text": ""
+                      }
+                    ]
+                  },
+                  {
+                    "text": "\" operation"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "37d2fc1a40634236974504bf5e3bcf8c",
+          "id": "1ca9b22bd65945029fca64666d3a4e48",
+          "hasCardHeader": false,
+          "cardMetadata": {
+            "mode": "card",
+            "metadataScript": "",
+            "cardTemplate": "",
+            "cardFields": {},
+            "cardDefinition": {}
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false
+        },
+        "acf198901e884cfb9f95047f9248fd68": {
+          "id": "acf198901e884cfb9f95047f9248fd68",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "6934ffd080414b0ba90c916201936775": {
+          "id": "6934ffd080414b0ba90c916201936775",
+          "stepType": "Prompt",
+          "name": "Update Another",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Do you want to update another content?"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "02e15d39a1764bb39423b261c34e8e80"
+        },
+        "350bb1e4eed44edcbef87d7d9e624717": {
+          "id": "350bb1e4eed44edcbef87d7d9e624717",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "9d6d2450ca394922961c887291729d27": {
+          "id": "9d6d2450ca394922961c887291729d27",
+          "name": "Get Contents",
+          "script": "(function execute() {\n    /* Code your scripted action here. For example, you might update a\n       record based on conditional logic:\n\n        if (vaVars.my_flag == 'say hello') {\n            gs.info('hi there');\n        } else {\n            gs.info('bye now');\n        }\n    */\n\n    vaVars.contents = \"\";\n    var contents = [];\n    var contentGR = new GlideRecord(\"x_350851_fabule_content\");\n    contentGR.addQuery(\"title\", \"CONTAINS\", vaInputs.content_title);\n    contentGR.query();\n    while(contentGR.next()){\n        var content = {\n            \"id\": contentGR.getUniqueValue(),\n            \"title\": contentGR.getValue(\"title\"),\n            \"description\": contentGR.getValue(\"description\"),\n            \"imageName\": contentGR.getDisplayValue(\"cover_image\"),\n            \"active\": contentGR.active\n        }\n        contents.push(content);\n    }\n\n    if(contents.length &gt; 0){\n        vaVars.contents = JSON.stringify(contents);\n    }\n})()\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "6ddcb5e7674144bb8a701db3b49cbf18": {
+          "stepType": "CarouselPrompt",
+          "name": "Choose Content",
+          "prompt": {
+            "value": "",
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "fd3d5f78a8bc4d188caa2445f197f5f2",
+          "id": "6ddcb5e7674144bb8a701db3b49cbf18",
+          "carouselLabel": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Looking for contents with title containing, '"
+                  },
+                  {
+                    "type": "datapill",
+                    "dataPill": {
+                      "value": "{{vaInputs.content_title}}",
+                      "displayValue": "Input Variables➛Content Title"
+                    },
+                    "children": [
+                      {
+                        "text": ""
+                      }
+                    ]
+                  },
+                  {
+                    "text": "'"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "carouselItemExpression": "(function execute() {\n    /* Code your script logic here.  When defining your enumeration list in javascript\n       ensure that you assign keys of Name, Description, Value, and Body. For example:\n\n       var options = [];\n       options.push(\n            {\n                'Name': 'name1',\n                'Value': 'value_1',\n                'Description': 'a description of value_1 item',\n                'Body': 'https://somehost/somepath/somepic1.jpg'\n            }\n       );\n       options.push(\n            {\n                'Name': 'name2',\n                'Value': 'value_2',\n                'Description': 'a description of value_2 item',\n                'Body': 'https://somehost/somepath/somepic2.jpg'\n            }\n       );\n       return options;\n    */\n\n    var options = []; // add options here...\n    var contents = JSON.parse(vaVars.contents);\n    for(var i in contents){\n        options.push(\n        {\n            'Name': contents[i].title,\n            'Value': contents[i].id,\n            'Description': contents[i].description,\n            'Body': gs.getProperty('glide.servlet.uri') + contents[i].imageName\n        });\n    }\n    return options;\n})()\n",
+          "noRecordsResponseMsg": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Sorry, I couldn't find any contents with title containing '"
+                  },
+                  {
+                    "type": "datapill",
+                    "dataPill": {
+                      "value": "{{vaInputs.content_title}}",
+                      "displayValue": "Input Variables➛Content Title"
+                    },
+                    "children": [
+                      {
+                        "text": ""
+                      }
+                    ]
+                  },
+                  {
+                    "text": "'"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false
+        },
+        "776e08045a9246e5ad8404c5ec65c725": {
+          "id": "776e08045a9246e5ad8404c5ec65c725",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "94a950b5066643e6aaadbdea4d62db72": {
+          "id": "94a950b5066643e6aaadbdea4d62db72",
+          "stepType": "Prompt",
+          "name": "confirm active deactive",
+          "prompt": {
+            "value": "(function execute() {\n    /* Return a quoted string.  For example:\n\n       if (vaInputs.first_name == 'Bill') {\n           return gs.getMessageLang(\"hi there {0}\", vaContext.getRequesterLang(), [vaInputs.first_name]);\n       } else {\n           return gs.getMessageLang(\"how are you {0}\", vaContext.getRequesterLang(), [vaInputs.last_name]);\n       }\n    */\n    var contents = JSON.parse(vaVars.contents);\n    var selectedContent = vaInputs.choose_content;\n    var roll, active = false;\n    for (var i in contents) {\n        if (contents[i].id == selectedContent) {\n            active = contents[i].active;\n            roll = i;\n            break;\n        }\n    }\n    vaVars.activate_content = !active;\n    var message = \"The selected content '\" + contents[roll].title + \"' is currently \" + (active ? 'active' : 'inactive') + \".\\nDo you want to \" + (active ? 'deactivate' : 'activate') + \" it?\";\n    return message;\n})()",
+            "mode": "script"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "dd7783085db44ff0a41ee22926c5b0f9"
+        },
+        "6bb8ae360a6a4916bda031af7de29132": {
+          "id": "6bb8ae360a6a4916bda031af7de29132",
+          "stepType": "Decision",
+          "name": "Activate/Deactivate"
+        },
+        "6cb44c3b40534d1cb0c31b32cbe1bf7b": {
+          "id": "6cb44c3b40534d1cb0c31b32cbe1bf7b",
+          "stepType": "CrudAction",
+          "name": "Activate/Deactivate Content",
+          "template": "active={{vaVars.activate_content}}",
+          "mode": "update",
+          "record": "0263ac8a864d466bb83881d2de975660",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "variableId": "7ab12cd0ee40478b8d1ecbef29e353c7"
+        },
+        "905c3f7c85c04f34baffa6ad1551c2cc": {
+          "id": "905c3f7c85c04f34baffa6ad1551c2cc",
+          "stepType": "LookupRecord",
+          "name": "Store Content Gliderecord",
+          "condition": {
+            "mode": "glide_query",
+            "value": "sys_id={{vaInputs.choose_content}}"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "variableId": "0263ac8a864d466bb83881d2de975660"
+        },
+        "23d2068bc00a4742b55e033282433d67": {
+          "id": "23d2068bc00a4742b55e033282433d67",
+          "stepType": "TextOutput",
+          "name": "Activate/Deactivate Action Result",
+          "secure": false,
+          "value": [
+            {
+              "value": "(function execute() {\n    /* Return a quoted string.  For example:\n\n       if (vaInputs.first_name == 'Bill') {\n           return gs.getMessageLang(\"hi there {0}\", vaContext.getRequesterLang(), [vaInputs.first_name]);\n       } else {\n           return gs.getMessageLang(\"how are you {0}\", vaContext.getRequesterLang(), [vaInputs.last_name]);\n       }\n    */\n    var message = \"Failed to process the request!\";\n    try {\n        var contentGR = new GlideRecord(\"x_350851_fabule_content\");\n        contentGR.get(vaInputs.activate_deactivate_content.getValue());\n        var currentStatus = contentGR.active;\n\n        if ((vaVars.activate_content &amp;&amp; currentStatus) || (!vaVars.activate_content &amp;&amp; !currentStatus)) {\n            message = \"Successfully completed the request!\";\n        }\n    } catch (err) {\n        gs.error(\"Update Fabule Content: Activate/Deactivate message\\n\\n\" + err);\n    } finally {\n        return message;\n    }\n})()\n",
+              "mode": "script"
+            }
+          ],
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        }
+      },
+      "edges": [
+        {
+          "id": "b12f53fd243b4491a4ead23c8c5ed319",
+          "edgeType": "Edge",
+          "source": "23d2068bc00a4742b55e033282433d67",
+          "target": "6934ffd080414b0ba90c916201936775",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "7d7ed7461e054dbc974c1d971d59a225",
+          "edgeType": "Branch",
+          "source": "6bb8ae360a6a4916bda031af7de29132",
+          "target": "6934ffd080414b0ba90c916201936775",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.confirm_active_deactive=false",
+            "mode": "query"
+          },
+          "label": "false"
+        },
+        {
+          "id": "a578907c06dc417bb7cc769ca14d2ff6",
+          "edgeType": "Edge",
+          "source": "9d6d2450ca394922961c887291729d27",
+          "target": "acf198901e884cfb9f95047f9248fd68",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "b55efa04b698445fbc74f19ac2a10501",
+          "edgeType": "Branch",
+          "source": "350bb1e4eed44edcbef87d7d9e624717",
+          "target": "1d6b8f0e3842430dbc38adedca36182a",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.update_another=false",
+            "mode": "query"
+          },
+          "label": "false"
+        },
+        {
+          "id": "f85148516a9345d3baac980775661bc5",
+          "edgeType": "Branch",
+          "source": "350bb1e4eed44edcbef87d7d9e624717",
+          "target": "cc9e56b10d2640f8bb1f590f74a6079a",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.update_another=true",
+            "mode": "query"
+          },
+          "label": "true"
+        },
+        {
+          "id": "33bb915d746d4b8f86b53e136c25e5b4",
+          "edgeType": "Edge",
+          "source": "deae3598897543b78801d64bb3645f3d",
+          "target": "cc9e56b10d2640f8bb1f590f74a6079a",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "c15025aa09884d478050f11fa9f86c35",
+          "edgeType": "Branch",
+          "source": "acf198901e884cfb9f95047f9248fd68",
+          "target": "6934ffd080414b0ba90c916201936775",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n    return vaVars.contents ? false : true\n})()\n"
+          },
+          "label": "No Contents"
+        },
+        {
+          "id": "9f636200326b4f2e82b32640295d8d1b",
+          "edgeType": "Edge",
+          "source": "6934ffd080414b0ba90c916201936775",
+          "target": "350bb1e4eed44edcbef87d7d9e624717",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "14945b08e25245d48669836bb39f09a6",
+          "edgeType": "Edge",
+          "source": "cc9e56b10d2640f8bb1f590f74a6079a",
+          "target": "9d6d2450ca394922961c887291729d27",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "c1ef3876c8824d87bc60d1bb57ec44ce",
+          "edgeType": "Branch",
+          "source": "acf198901e884cfb9f95047f9248fd68",
+          "target": "6ddcb5e7674144bb8a701db3b49cbf18",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n    return vaVars.contents ? true : false\n})()\n"
+          },
+          "label": "Found Contents"
+        },
+        {
+          "id": "00c7331bbb9845ad84435a566eaec72d",
+          "edgeType": "Edge",
+          "source": "1ca9b22bd65945029fca64666d3a4e48",
+          "target": "776e08045a9246e5ad8404c5ec65c725",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "82eacd27a9334e0eb4120182e275ebf0",
+          "edgeType": "Branch",
+          "source": "776e08045a9246e5ad8404c5ec65c725",
+          "target": "6934ffd080414b0ba90c916201936775",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.operation=Modify Title",
+            "mode": "query"
+          },
+          "label": "Modify Title"
+        },
+        {
+          "id": "e96cc8d7f56a4e4db85c98a11036f14e",
+          "edgeType": "Branch",
+          "source": "776e08045a9246e5ad8404c5ec65c725",
+          "target": "94a950b5066643e6aaadbdea4d62db72",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.operation=Activate/Deactivate",
+            "mode": "query"
+          },
+          "label": "Activate/Deactivate"
+        },
+        {
+          "id": "6861bdd454094dafa6c2444d70f04f58",
+          "edgeType": "Edge",
+          "source": "94a950b5066643e6aaadbdea4d62db72",
+          "target": "6bb8ae360a6a4916bda031af7de29132",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "ad14eb02037a4c328c2af81e6824b231",
+          "edgeType": "Branch",
+          "source": "6bb8ae360a6a4916bda031af7de29132",
+          "target": "6cb44c3b40534d1cb0c31b32cbe1bf7b",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.confirm_active_deactive=true",
+            "mode": "query"
+          },
+          "label": "true"
+        },
+        {
+          "id": "9cb11ec40c6b480ab4fa2628e3a15c7c",
+          "edgeType": "Edge",
+          "source": "6ddcb5e7674144bb8a701db3b49cbf18",
+          "target": "905c3f7c85c04f34baffa6ad1551c2cc",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "a254d6ea30c641aba1e4bb189cef09ef",
+          "edgeType": "Edge",
+          "source": "905c3f7c85c04f34baffa6ad1551c2cc",
+          "target": "1ca9b22bd65945029fca64666d3a4e48",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "bcade283aec04958923a7afa2d405f31",
+          "edgeType": "Edge",
+          "source": "6cb44c3b40534d1cb0c31b32cbe1bf7b",
+          "target": "23d2068bc00a4742b55e033282433d67",
+          "sourcePort": "",
+          "targetPort": ""
+        }
+      ]
+    }
+  },
+  "variables": {
+    "b6990ae91327498abb2a447b848ce3ba": {
+      "id": "b6990ae91327498abb2a447b848ce3ba",
+      "name": "LiveAgent_application",
+      "value": {
+        "mode": "simple",
+        "value": null
+      },
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "current-user": {
+      "category": "vaInputs",
+      "id": "current-user",
+      "label": "User",
+      "name": "user",
+      "table": "sys_user",
+      "varType": "reference"
+    },
+    "6df430f2cfb84a7f8bae610c19b404e4": {
+      "id": "6df430f2cfb84a7f8bae610c19b404e4",
+      "name": "content_title",
+      "label": "Content Title",
+      "varType": "string",
+      "secure": false,
+      "category": "vaInputs",
+      "encryptionHashFunction": "SHA-256",
+      "encryptionSalt": {
+        "value": "MTY4MTAxNzUzMjU4MCBWQSBEZXNpZ25lciBpcyBhd2Vzb21l",
+        "mode": "simple"
+      },
+      "nodeId": "cc9e56b10d2640f8bb1f590f74a6079a",
+      "isHidden": false
+    },
+    "37d2fc1a40634236974504bf5e3bcf8c": {
+      "id": "37d2fc1a40634236974504bf5e3bcf8c",
+      "name": "operation",
+      "label": "Operation",
+      "varType": "choice",
+      "choices": [
+        {
+          "label": "Activate/Deactivate",
+          "value": "Activate/Deactivate"
+        },
+        {
+          "label": "Modify Title",
+          "value": "Modify Title"
+        }
+      ],
+      "category": "vaInputs",
+      "nodeId": "1ca9b22bd65945029fca64666d3a4e48",
+      "isHidden": false
+    },
+    "02e15d39a1764bb39423b261c34e8e80": {
+      "id": "02e15d39a1764bb39423b261c34e8e80",
+      "name": "update_another",
+      "label": "Update Another",
+      "varType": "boolean",
+      "secure": false,
+      "category": "vaInputs",
+      "nodeId": "6934ffd080414b0ba90c916201936775",
+      "isHidden": false
+    },
+    "fd3d5f78a8bc4d188caa2445f197f5f2": {
+      "id": "fd3d5f78a8bc4d188caa2445f197f5f2",
+      "name": "choose_content",
+      "label": "Choose Content",
+      "varType": "carousel-image",
+      "category": "vaInputs",
+      "nodeId": "6ddcb5e7674144bb8a701db3b49cbf18",
+      "isHidden": false
+    },
+    "d8e88b9dcadd4f36a5c51a2a2d99a2aa": {
+      "id": "d8e88b9dcadd4f36a5c51a2a2d99a2aa",
+      "value": {
+        "value": "",
+        "mode": "simple"
+      },
+      "name": "contents",
+      "label": "contents",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "dd7783085db44ff0a41ee22926c5b0f9": {
+      "id": "dd7783085db44ff0a41ee22926c5b0f9",
+      "name": "confirm_active_deactive",
+      "label": "Confirm Active Deactive",
+      "varType": "boolean",
+      "secure": false,
+      "category": "vaInputs",
+      "nodeId": "94a950b5066643e6aaadbdea4d62db72",
+      "isHidden": false
+    },
+    "7ab12cd0ee40478b8d1ecbef29e353c7": {
+      "id": "7ab12cd0ee40478b8d1ecbef29e353c7",
+      "name": "activate_deactivate_content",
+      "label": "Activate/Deactivate Content",
+      "varType": "reference",
+      "table": "x_350851_fabule_content",
+      "inactive": true,
+      "category": "vaInputs",
+      "nodeId": "6cb44c3b40534d1cb0c31b32cbe1bf7b",
+      "isHidden": false
+    },
+    "0263ac8a864d466bb83881d2de975660": {
+      "id": "0263ac8a864d466bb83881d2de975660",
+      "name": "store_content_gliderecord",
+      "label": "Store Content Gliderecord",
+      "varType": "reference",
+      "table": "x_350851_fabule_content",
+      "category": "vaInputs",
+      "nodeId": "905c3f7c85c04f34baffa6ad1551c2cc",
+      "isHidden": false
+    },
+    "1d4b28bc28df4bbe8b0061ef02f9b302": {
+      "id": "1d4b28bc28df4bbe8b0061ef02f9b302",
+      "value": {
+        "mode": "simple",
+        "value": ""
+      },
+      "name": "activate_content",
+      "label": "activate_content",
+      "varType": "script",
+      "category": "vaVars"
+    }
+  }
+}</graph>
+        <name>_PRVW__8b546ad76eca2110561396c25b5f7ff4</name>
+        <sys_class_name>sys_cb_design_topic</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-04-12 12:29:19</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>cb54261b47ca2110e080e4be436d437b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>FlowTopic</sys_name>
+        <sys_package display_value="Fabule Virtual Agent" source="x_350851_fabule_va">765548b847822110e080e4be436d43ad</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Fabule Virtual Agent">765548b847822110e080e4be436d43ad</sys_scope>
+        <sys_update_name>sys_cb_design_topic_cb54261b47ca2110e080e4be436d437b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-04-12 12:29:19</sys_updated_on>
+        <type>FlowTopic</type>
+    </sys_cb_design_topic>
+</record_update>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic">
+    <sys_cb_topic action="INSERT_OR_UPDATE">
+        <applicability/>
+        <applicability_mode>query</applicability_mode>
+        <auto_resolution_enabled>false</auto_resolution_enabled>
+        <autopilot_topic>false</autopilot_topic>
+        <category/>
+        <channels/>
+        <connect_queue/>
+        <description>Topic allows users to open active Fabule contents</description>
+        <expose_on_palette>false</expose_on_palette>
+        <flexible_conversation_switching>false</flexible_conversation_switching>
+        <graph>{"graph_api_version":"1.0.42","variables":{"de0853a486fa48acbd9ff3619cf985a6":{"id":"de0853a486fa48acbd9ff3619cf985a6","name":"LiveAgent_application","value":{"mode":"simple","value":null},"varType":"script","category":"vaVars"}},"goals":{"primary":{"id":"primary","trigger":{"type":"primary"},"name":"primary","applicability":"","description":"","nodes":{"df84d28b1f604e2fb90084877590c821":{"id":"df84d28b1f604e2fb90084877590c821","stepType":"Start","name":"Start","greetingResponse":{"mode":"simple","value":""}},"1d385b7da8cf4d27854a1c58a2f43561":{"id":"1d385b7da8cf4d27854a1c58a2f43561","stepType":"TerminateGoal","name":"End","confirmationMessage":{"mode":"simple","value":""}}},"edges":[{"id":"705fc3dc32194fc8aadcb6dda507972b","edgeType":"Edge","source":"df84d28b1f604e2fb90084877590c821","target":"1d385b7da8cf4d27854a1c58a2f43561","sourcePort":"","targetPort":""}]}}}</graph>
+        <key_phrases>View Active Fabule Contents,Fabule Content,content</key_phrases>
+        <library>false</library>
+        <live_agent>false</live_agent>
+        <name>View Active Fabule Contents</name>
+        <nlu_intent/>
+        <nlu_intent_label/>
+        <nlu_model/>
+        <nlu_model_label/>
+        <nlu_provider/>
+        <palette_label/>
+        <roles/>
+        <root_topic_id/>
+        <secure_custom_input_control>false</secure_custom_input_control>
+        <source_topic_id/>
+        <sys_class_name>sys_cb_topic</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-04-04 06:43:43</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>ee88ccfc47822110e080e4be436d43ab</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>View Active Fabule Contents</sys_name>
+        <sys_package display_value="Fabule Virtual Agent" source="x_350851_fabule_va">765548b847822110e080e4be436d43ad</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Fabule Virtual Agent">765548b847822110e080e4be436d43ad</sys_scope>
+        <sys_update_name>sys_cb_topic_ee88ccfc47822110e080e4be436d43ab</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-04-04 06:43:43</sys_updated_on>
+        <triggerable_by_notification>false</triggerable_by_notification>
+        <type>STANDARD</type>
+        <variables/>
+    </sys_cb_topic>
+    <sys_variable_value action="delete_multiple" query="document_key=ee88ccfc47822110e080e4be436d43ab"/>
+</record_update>

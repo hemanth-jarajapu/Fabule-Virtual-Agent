@@ -1,0 +1,786 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic">
+    <sys_cb_topic action="INSERT_OR_UPDATE">
+        <applicability/>
+        <applicability_mode>query</applicability_mode>
+        <auto_resolution_enabled>false</auto_resolution_enabled>
+        <autopilot_topic>false</autopilot_topic>
+        <category>49f6c0bc47822110e080e4be436d43b3</category>
+        <channels/>
+        <connect_queue/>
+        <description>Topic allows users to activate or deactivate Fabule contents</description>
+        <expose_on_palette>false</expose_on_palette>
+        <flexible_conversation_switching>false</flexible_conversation_switching>
+        <graph>{
+  "graph_api_version": "1.0.42",
+  "goals": {
+    "primary": {
+      "id": "primary",
+      "trigger": {
+        "type": "primary"
+      },
+      "name": "primary",
+      "applicability": "",
+      "description": "",
+      "nodes": {
+        "deae3598897543b78801d64bb3645f3d": {
+          "id": "deae3598897543b78801d64bb3645f3d",
+          "stepType": "Start",
+          "name": "Start",
+          "greetingResponse": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Hi "
+                  },
+                  {
+                    "type": "datapill",
+                    "dataPill": {
+                      "value": "{{vaInputs.user.name}}",
+                      "displayValue": "Input Variables➛User➛Name"
+                    },
+                    "children": [
+                      {
+                        "text": ""
+                      }
+                    ]
+                  },
+                  {
+                    "text": ", I can help you search and update Fabule contents."
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          }
+        },
+        "1d6b8f0e3842430dbc38adedca36182a": {
+          "id": "1d6b8f0e3842430dbc38adedca36182a",
+          "stepType": "TerminateGoal",
+          "name": "End",
+          "confirmationMessage": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Hope I was able to help you!"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          }
+        },
+        "cc9e56b10d2640f8bb1f590f74a6079a": {
+          "id": "cc9e56b10d2640f8bb1f590f74a6079a",
+          "stepType": "Prompt",
+          "name": "Content Title",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Please provide (part of) the title of the content you'd like to update"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "6df430f2cfb84a7f8bae610c19b404e4",
+          "inputType": {
+            "format": "Text",
+            "script": ""
+          }
+        },
+        "1ca9b22bd65945029fca64666d3a4e48": {
+          "stepType": "ChoicePrompt",
+          "name": "Operation",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "What would you like to do with the content"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "You have chosen to perform \""
+                  },
+                  {
+                    "type": "datapill",
+                    "dataPill": {
+                      "value": "{{vaInputs.operation}}",
+                      "displayValue": "Input Variables➛Operation"
+                    },
+                    "children": [
+                      {
+                        "text": ""
+                      }
+                    ]
+                  },
+                  {
+                    "text": "\" operation"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "37d2fc1a40634236974504bf5e3bcf8c",
+          "id": "1ca9b22bd65945029fca64666d3a4e48",
+          "hasCardHeader": false,
+          "cardMetadata": {
+            "mode": "card",
+            "metadataScript": "",
+            "cardTemplate": "",
+            "cardFields": {},
+            "cardDefinition": {}
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false
+        },
+        "acf198901e884cfb9f95047f9248fd68": {
+          "id": "acf198901e884cfb9f95047f9248fd68",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "6934ffd080414b0ba90c916201936775": {
+          "id": "6934ffd080414b0ba90c916201936775",
+          "stepType": "Prompt",
+          "name": "Update Another",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Do you want to update another content?"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "02e15d39a1764bb39423b261c34e8e80"
+        },
+        "350bb1e4eed44edcbef87d7d9e624717": {
+          "id": "350bb1e4eed44edcbef87d7d9e624717",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "9d6d2450ca394922961c887291729d27": {
+          "id": "9d6d2450ca394922961c887291729d27",
+          "name": "Get Contents",
+          "script": "(function execute() {\n    /* Code your scripted action here. For example, you might update a\n       record based on conditional logic:\n\n        if (vaVars.my_flag == 'say hello') {\n            gs.info('hi there');\n        } else {\n            gs.info('bye now');\n        }\n    */\n\n    vaVars.contents = \"\";\n    var contents = [];\n    var contentGR = new GlideRecord(\"x_350851_fabule_content\");\n    contentGR.addQuery(\"title\", \"CONTAINS\", vaInputs.content_title);\n    contentGR.query();\n    while(contentGR.next()){\n        var content = {\n            \"id\": contentGR.getUniqueValue(),\n            \"title\": contentGR.getValue(\"title\"),\n            \"description\": contentGR.getValue(\"description\"),\n            \"imageName\": contentGR.getDisplayValue(\"cover_image\"),\n            \"active\": contentGR.active\n        }\n        contents.push(content);\n    }\n\n    if(contents.length &gt; 0){\n        vaVars.contents = JSON.stringify(contents);\n    }\n})()\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "6ddcb5e7674144bb8a701db3b49cbf18": {
+          "stepType": "CarouselPrompt",
+          "name": "Choose Content",
+          "prompt": {
+            "value": "",
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "fd3d5f78a8bc4d188caa2445f197f5f2",
+          "id": "6ddcb5e7674144bb8a701db3b49cbf18",
+          "carouselLabel": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Looking for contents with title containing, '"
+                  },
+                  {
+                    "type": "datapill",
+                    "dataPill": {
+                      "value": "{{vaInputs.content_title}}",
+                      "displayValue": "Input Variables➛Content Title"
+                    },
+                    "children": [
+                      {
+                        "text": ""
+                      }
+                    ]
+                  },
+                  {
+                    "text": "'"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "carouselItemExpression": "(function execute() {\n    /* Code your script logic here.  When defining your enumeration list in javascript\n       ensure that you assign keys of Name, Description, Value, and Body. For example:\n\n       var options = [];\n       options.push(\n            {\n                'Name': 'name1',\n                'Value': 'value_1',\n                'Description': 'a description of value_1 item',\n                'Body': 'https://somehost/somepath/somepic1.jpg'\n            }\n       );\n       options.push(\n            {\n                'Name': 'name2',\n                'Value': 'value_2',\n                'Description': 'a description of value_2 item',\n                'Body': 'https://somehost/somepath/somepic2.jpg'\n            }\n       );\n       return options;\n    */\n\n    var options = []; // add options here...\n    var contents = JSON.parse(vaVars.contents);\n    for(var i in contents){\n        options.push(\n        {\n            'Name': contents[i].title,\n            'Value': contents[i].id,\n            'Description': contents[i].description,\n            'Body': gs.getProperty('glide.servlet.uri') + contents[i].imageName\n        });\n    }\n    return options;\n})()\n",
+          "noRecordsResponseMsg": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Sorry, I couldn't find any contents with title containing '"
+                  },
+                  {
+                    "type": "datapill",
+                    "dataPill": {
+                      "value": "{{vaInputs.content_title}}",
+                      "displayValue": "Input Variables➛Content Title"
+                    },
+                    "children": [
+                      {
+                        "text": ""
+                      }
+                    ]
+                  },
+                  {
+                    "text": "'"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false
+        },
+        "776e08045a9246e5ad8404c5ec65c725": {
+          "id": "776e08045a9246e5ad8404c5ec65c725",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "94a950b5066643e6aaadbdea4d62db72": {
+          "id": "94a950b5066643e6aaadbdea4d62db72",
+          "stepType": "Prompt",
+          "name": "confirm active deactive",
+          "prompt": {
+            "value": "(function execute() {\n    /* Return a quoted string.  For example:\n\n       if (vaInputs.first_name == 'Bill') {\n           return gs.getMessageLang(\"hi there {0}\", vaContext.getRequesterLang(), [vaInputs.first_name]);\n       } else {\n           return gs.getMessageLang(\"how are you {0}\", vaContext.getRequesterLang(), [vaInputs.last_name]);\n       }\n    */\n    var contents = JSON.parse(vaVars.contents);\n    var selectedContent = vaInputs.choose_content;\n    var roll, active = false;\n    for (var i in contents) {\n        if (contents[i].id == selectedContent) {\n            active = contents[i].active;\n            roll = i;\n            break;\n        }\n    }\n    vaVars.activate_content = !active;\n    var message = \"The selected content '\" + contents[roll].title + \"' is currently \" + (active ? 'active' : 'inactive') + \".\\nDo you want to \" + (active ? 'deactivate' : 'activate') + \" it?\";\n    return message;\n})()",
+            "mode": "script"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "dd7783085db44ff0a41ee22926c5b0f9"
+        },
+        "6bb8ae360a6a4916bda031af7de29132": {
+          "id": "6bb8ae360a6a4916bda031af7de29132",
+          "stepType": "Decision",
+          "name": "Activate/Deactivate"
+        },
+        "6cb44c3b40534d1cb0c31b32cbe1bf7b": {
+          "id": "6cb44c3b40534d1cb0c31b32cbe1bf7b",
+          "stepType": "CrudAction",
+          "name": "Activate/Deactivate Content",
+          "template": "active={{vaVars.activate_content}}",
+          "mode": "update",
+          "record": "0263ac8a864d466bb83881d2de975660",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "variableId": "7ab12cd0ee40478b8d1ecbef29e353c7"
+        },
+        "905c3f7c85c04f34baffa6ad1551c2cc": {
+          "id": "905c3f7c85c04f34baffa6ad1551c2cc",
+          "stepType": "LookupRecord",
+          "name": "Store Content Gliderecord",
+          "condition": {
+            "mode": "glide_query",
+            "value": "sys_id={{vaInputs.choose_content}}"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "variableId": "0263ac8a864d466bb83881d2de975660"
+        },
+        "23d2068bc00a4742b55e033282433d67": {
+          "id": "23d2068bc00a4742b55e033282433d67",
+          "stepType": "TextOutput",
+          "name": "Activate/Deactivate Action Result",
+          "secure": false,
+          "value": [
+            {
+              "value": "(function execute() {\n    /* Return a quoted string.  For example:\n\n       if (vaInputs.first_name == 'Bill') {\n           return gs.getMessageLang(\"hi there {0}\", vaContext.getRequesterLang(), [vaInputs.first_name]);\n       } else {\n           return gs.getMessageLang(\"how are you {0}\", vaContext.getRequesterLang(), [vaInputs.last_name]);\n       }\n    */\n    var message = \"Failed to process the request!\";\n    try {\n        var contentGR = new GlideRecord(\"x_350851_fabule_content\");\n        contentGR.get(vaInputs.activate_deactivate_content.getValue());\n        var currentStatus = contentGR.active;\n\n        if ((vaVars.activate_content &amp;&amp; currentStatus) || (!vaVars.activate_content &amp;&amp; !currentStatus)) {\n            message = \"Successfully completed the request!\";\n        }\n    } catch (err) {\n        gs.error(\"Update Fabule Content: Activate/Deactivate message\\n\\n\" + err);\n    } finally {\n        return message;\n    }\n})()\n",
+              "mode": "script"
+            }
+          ],
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        }
+      },
+      "edges": [
+        {
+          "id": "b12f53fd243b4491a4ead23c8c5ed319",
+          "edgeType": "Edge",
+          "source": "23d2068bc00a4742b55e033282433d67",
+          "target": "6934ffd080414b0ba90c916201936775",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "7d7ed7461e054dbc974c1d971d59a225",
+          "edgeType": "Branch",
+          "source": "6bb8ae360a6a4916bda031af7de29132",
+          "target": "6934ffd080414b0ba90c916201936775",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.confirm_active_deactive=false",
+            "mode": "query"
+          },
+          "label": "false"
+        },
+        {
+          "id": "a578907c06dc417bb7cc769ca14d2ff6",
+          "edgeType": "Edge",
+          "source": "9d6d2450ca394922961c887291729d27",
+          "target": "acf198901e884cfb9f95047f9248fd68",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "b55efa04b698445fbc74f19ac2a10501",
+          "edgeType": "Branch",
+          "source": "350bb1e4eed44edcbef87d7d9e624717",
+          "target": "1d6b8f0e3842430dbc38adedca36182a",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.update_another=false",
+            "mode": "query"
+          },
+          "label": "false"
+        },
+        {
+          "id": "f85148516a9345d3baac980775661bc5",
+          "edgeType": "Branch",
+          "source": "350bb1e4eed44edcbef87d7d9e624717",
+          "target": "cc9e56b10d2640f8bb1f590f74a6079a",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.update_another=true",
+            "mode": "query"
+          },
+          "label": "true"
+        },
+        {
+          "id": "33bb915d746d4b8f86b53e136c25e5b4",
+          "edgeType": "Edge",
+          "source": "deae3598897543b78801d64bb3645f3d",
+          "target": "cc9e56b10d2640f8bb1f590f74a6079a",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "c15025aa09884d478050f11fa9f86c35",
+          "edgeType": "Branch",
+          "source": "acf198901e884cfb9f95047f9248fd68",
+          "target": "6934ffd080414b0ba90c916201936775",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n    return vaVars.contents ? false : true\n})()\n"
+          },
+          "label": "No Contents"
+        },
+        {
+          "id": "9f636200326b4f2e82b32640295d8d1b",
+          "edgeType": "Edge",
+          "source": "6934ffd080414b0ba90c916201936775",
+          "target": "350bb1e4eed44edcbef87d7d9e624717",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "14945b08e25245d48669836bb39f09a6",
+          "edgeType": "Edge",
+          "source": "cc9e56b10d2640f8bb1f590f74a6079a",
+          "target": "9d6d2450ca394922961c887291729d27",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "c1ef3876c8824d87bc60d1bb57ec44ce",
+          "edgeType": "Branch",
+          "source": "acf198901e884cfb9f95047f9248fd68",
+          "target": "6ddcb5e7674144bb8a701db3b49cbf18",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    /* Return true or false to indicate the branch condition's applicability.\n       For example:\n\n       var applies = vaInputs.first_name == 'Bill' ? true : false;\n       return applies;\n    */\n    return vaVars.contents ? true : false\n})()\n"
+          },
+          "label": "Found Contents"
+        },
+        {
+          "id": "00c7331bbb9845ad84435a566eaec72d",
+          "edgeType": "Edge",
+          "source": "1ca9b22bd65945029fca64666d3a4e48",
+          "target": "776e08045a9246e5ad8404c5ec65c725",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "82eacd27a9334e0eb4120182e275ebf0",
+          "edgeType": "Branch",
+          "source": "776e08045a9246e5ad8404c5ec65c725",
+          "target": "6934ffd080414b0ba90c916201936775",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.operation=Modify Title",
+            "mode": "query"
+          },
+          "label": "Modify Title"
+        },
+        {
+          "id": "e96cc8d7f56a4e4db85c98a11036f14e",
+          "edgeType": "Branch",
+          "source": "776e08045a9246e5ad8404c5ec65c725",
+          "target": "94a950b5066643e6aaadbdea4d62db72",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.operation=Activate/Deactivate",
+            "mode": "query"
+          },
+          "label": "Activate/Deactivate"
+        },
+        {
+          "id": "6861bdd454094dafa6c2444d70f04f58",
+          "edgeType": "Edge",
+          "source": "94a950b5066643e6aaadbdea4d62db72",
+          "target": "6bb8ae360a6a4916bda031af7de29132",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "ad14eb02037a4c328c2af81e6824b231",
+          "edgeType": "Branch",
+          "source": "6bb8ae360a6a4916bda031af7de29132",
+          "target": "6cb44c3b40534d1cb0c31b32cbe1bf7b",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.confirm_active_deactive=true",
+            "mode": "query"
+          },
+          "label": "true"
+        },
+        {
+          "id": "9cb11ec40c6b480ab4fa2628e3a15c7c",
+          "edgeType": "Edge",
+          "source": "6ddcb5e7674144bb8a701db3b49cbf18",
+          "target": "905c3f7c85c04f34baffa6ad1551c2cc",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "a254d6ea30c641aba1e4bb189cef09ef",
+          "edgeType": "Edge",
+          "source": "905c3f7c85c04f34baffa6ad1551c2cc",
+          "target": "1ca9b22bd65945029fca64666d3a4e48",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "bcade283aec04958923a7afa2d405f31",
+          "edgeType": "Edge",
+          "source": "6cb44c3b40534d1cb0c31b32cbe1bf7b",
+          "target": "23d2068bc00a4742b55e033282433d67",
+          "sourcePort": "",
+          "targetPort": ""
+        }
+      ]
+    }
+  },
+  "variables": {
+    "b6990ae91327498abb2a447b848ce3ba": {
+      "id": "b6990ae91327498abb2a447b848ce3ba",
+      "name": "LiveAgent_application",
+      "value": {
+        "mode": "simple",
+        "value": null
+      },
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "current-user": {
+      "category": "vaInputs",
+      "id": "current-user",
+      "label": "User",
+      "name": "user",
+      "table": "sys_user",
+      "varType": "reference"
+    },
+    "6df430f2cfb84a7f8bae610c19b404e4": {
+      "id": "6df430f2cfb84a7f8bae610c19b404e4",
+      "name": "content_title",
+      "label": "Content Title",
+      "varType": "string",
+      "secure": false,
+      "category": "vaInputs",
+      "encryptionHashFunction": "SHA-256",
+      "encryptionSalt": {
+        "value": "MTY4MTAxNzUzMjU4MCBWQSBEZXNpZ25lciBpcyBhd2Vzb21l",
+        "mode": "simple"
+      },
+      "nodeId": "cc9e56b10d2640f8bb1f590f74a6079a",
+      "isHidden": false
+    },
+    "37d2fc1a40634236974504bf5e3bcf8c": {
+      "id": "37d2fc1a40634236974504bf5e3bcf8c",
+      "name": "operation",
+      "label": "Operation",
+      "varType": "choice",
+      "choices": [
+        {
+          "label": "Activate/Deactivate",
+          "value": "Activate/Deactivate"
+        },
+        {
+          "label": "Modify Title",
+          "value": "Modify Title"
+        }
+      ],
+      "category": "vaInputs",
+      "nodeId": "1ca9b22bd65945029fca64666d3a4e48",
+      "isHidden": false
+    },
+    "02e15d39a1764bb39423b261c34e8e80": {
+      "id": "02e15d39a1764bb39423b261c34e8e80",
+      "name": "update_another",
+      "label": "Update Another",
+      "varType": "boolean",
+      "secure": false,
+      "category": "vaInputs",
+      "nodeId": "6934ffd080414b0ba90c916201936775",
+      "isHidden": false
+    },
+    "fd3d5f78a8bc4d188caa2445f197f5f2": {
+      "id": "fd3d5f78a8bc4d188caa2445f197f5f2",
+      "name": "choose_content",
+      "label": "Choose Content",
+      "varType": "carousel-image",
+      "category": "vaInputs",
+      "nodeId": "6ddcb5e7674144bb8a701db3b49cbf18",
+      "isHidden": false
+    },
+    "d8e88b9dcadd4f36a5c51a2a2d99a2aa": {
+      "id": "d8e88b9dcadd4f36a5c51a2a2d99a2aa",
+      "value": {
+        "value": "",
+        "mode": "simple"
+      },
+      "name": "contents",
+      "label": "contents",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "dd7783085db44ff0a41ee22926c5b0f9": {
+      "id": "dd7783085db44ff0a41ee22926c5b0f9",
+      "name": "confirm_active_deactive",
+      "label": "Confirm Active Deactive",
+      "varType": "boolean",
+      "secure": false,
+      "category": "vaInputs",
+      "nodeId": "94a950b5066643e6aaadbdea4d62db72",
+      "isHidden": false
+    },
+    "7ab12cd0ee40478b8d1ecbef29e353c7": {
+      "id": "7ab12cd0ee40478b8d1ecbef29e353c7",
+      "name": "activate_deactivate_content",
+      "label": "Activate/Deactivate Content",
+      "varType": "reference",
+      "table": "x_350851_fabule_content",
+      "inactive": true,
+      "category": "vaInputs",
+      "nodeId": "6cb44c3b40534d1cb0c31b32cbe1bf7b",
+      "isHidden": false
+    },
+    "0263ac8a864d466bb83881d2de975660": {
+      "id": "0263ac8a864d466bb83881d2de975660",
+      "name": "store_content_gliderecord",
+      "label": "Store Content Gliderecord",
+      "varType": "reference",
+      "table": "x_350851_fabule_content",
+      "category": "vaInputs",
+      "nodeId": "905c3f7c85c04f34baffa6ad1551c2cc",
+      "isHidden": false
+    },
+    "1d4b28bc28df4bbe8b0061ef02f9b302": {
+      "id": "1d4b28bc28df4bbe8b0061ef02f9b302",
+      "value": {
+        "mode": "simple",
+        "value": ""
+      },
+      "name": "activate_content",
+      "label": "activate_content",
+      "varType": "script",
+      "category": "vaVars"
+    }
+  }
+}</graph>
+        <key_phrases>Update Fabule Content,deactivate,content,activate</key_phrases>
+        <library>false</library>
+        <live_agent>false</live_agent>
+        <name>Update Fabule Content</name>
+        <nlu_intent/>
+        <nlu_intent_label/>
+        <nlu_model/>
+        <nlu_model_label/>
+        <nlu_provider/>
+        <palette_label/>
+        <roles/>
+        <root_topic_id/>
+        <secure_custom_input_control>false</secure_custom_input_control>
+        <source_topic_id/>
+        <sys_class_name>sys_cb_topic</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-04-04 06:52:43</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>da9acc3447c22110e080e4be436d43b8</sys_id>
+        <sys_mod_count>23</sys_mod_count>
+        <sys_name>Update Fabule Content</sys_name>
+        <sys_package display_value="Fabule Virtual Agent" source="x_350851_fabule_va">765548b847822110e080e4be436d43ad</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Fabule Virtual Agent">765548b847822110e080e4be436d43ad</sys_scope>
+        <sys_update_name>sys_cb_topic_da9acc3447c22110e080e4be436d43b8</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-04-12 12:29:12</sys_updated_on>
+        <triggerable_by_notification>false</triggerable_by_notification>
+        <type>STANDARD</type>
+        <variables/>
+    </sys_cb_topic>
+    <sys_variable_value action="delete_multiple" query="document_key=da9acc3447c22110e080e4be436d43b8"/>
+</record_update>
